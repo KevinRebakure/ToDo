@@ -21,7 +21,7 @@ export default function App() {
   }, [todos]);
 
   return (
-    <div className="mx-auto w-[550px] space-y-5 rounded-xl border border-gray-400 p-10">
+    <div className="mx-auto w-[550px] space-y-5 rounded-xl border border-gray-400 overflow-hidden">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
       <div className="space-y-5">
         {todos.map((todo) => (
