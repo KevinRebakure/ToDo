@@ -24,12 +24,20 @@ export default function App() {
     <div className="mx-auto w-[650px] space-y-5 overflow-hidden rounded-xl shadow-lg">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
-      <div className="flex">
+      <div className="flex gap-x-5 p-5">
         {/* tasks */}
-        <div className="relative m-3 w-full space-y-3 rounded-xl border-2 border-orange-500 p-3">
+        <div className="relative w-full space-y-3 rounded-xl border-2 border-orange-500 p-3">
           <h1 className="text-2xl font-semibold">Tasks</h1>
+          <button className="gap-x-2 font-semibold text-orange-500">
+            Clear
+          </button>
           {todos.map((todo) => (
-            <ToDo todo={todo} key={todo.id} dispatch={dispatch} category={false}/>
+            <ToDo
+              todo={todo}
+              key={todo.id}
+              dispatch={dispatch}
+              category={false}
+            />
           ))}
           <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-orange-500 text-sm text-white">
             4
@@ -37,10 +45,18 @@ export default function App() {
         </div>
 
         {/* completed tasks */}
-        <div className="relative m-3 w-full space-y-3 rounded-xl border-2 border-green-500 p-3">
-          <h1 className="text-2xl font-semibold">Tasks</h1>
+        <div className="relative w-full space-y-3 rounded-xl border-2 border-green-500 p-3">
+          <h1 className="text-2xl font-semibold">Completed</h1>
+          <button className="gap-x-2 font-semibold text-green-500">
+            Clear
+          </button>
           {todos.map((todo) => (
-            <ToDo todo={todo} key={todo.id} dispatch={dispatch} category={true}/>
+            <ToDo
+              todo={todo}
+              key={todo.id}
+              dispatch={dispatch}
+              category={true}
+            />
           ))}
           <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-green-500 text-sm text-white">
             4
