@@ -31,14 +31,16 @@ export default function App() {
           <button className="gap-x-2 font-semibold text-orange-500">
             Clear
           </button>
-          {todos.map((todo) => (
-            <ToDo
-              todo={todo}
-              key={todo.id}
-              dispatch={dispatch}
-              category={false}
-            />
-          ))}
+          {todos
+            .filter((todo) => !todo.done)
+            .map((todo) => (
+              <ToDo
+                todo={todo}
+                key={todo.id}
+                dispatch={dispatch}
+                category={false}
+              />
+            ))}
           <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-orange-500 text-sm text-white">
             4
           </p>
@@ -50,14 +52,18 @@ export default function App() {
           <button className="gap-x-2 font-semibold text-green-500">
             Clear
           </button>
-          {todos.map((todo) => (
-            <ToDo
-              todo={todo}
-              key={todo.id}
-              dispatch={dispatch}
-              category={true}
-            />
-          ))}
+          {todos
+            .filter((todo) => todo.done)
+            .map((todo) => {
+              return (
+                <ToDo
+                  todo={todo}
+                  key={todo.id}
+                  dispatch={dispatch}
+                  category={true}
+                />
+              );
+            })}
           <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-green-500 text-sm text-white">
             4
           </p>
