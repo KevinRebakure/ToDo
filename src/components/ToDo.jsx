@@ -1,8 +1,10 @@
 import { ACTIONS } from "../App";
 
-export default function ToDo({ todo, dispatch }) {
+export default function ToDo({ todo, dispatch, category }) {
   return (
-    <div className="flex items-center justify-start gap-x-3 pr-1 border-l-2 border-orange-500 bg-orange-50 py-1 pl-3">
+    <div
+      className={`flex items-center justify-start gap-x-3 border-l-2 ${category ? "border-green-500 bg-green-50" : "border-orange-500 bg-orange-50"} py-1 pl-3 pr-1`}
+    >
       <p className={`${todo.done && "line-through"}`}>{todo.task}</p>
       <button
         onClick={() =>
@@ -17,7 +19,6 @@ export default function ToDo({ todo, dispatch }) {
           dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
         }
       >
-        {/* {todo.done ? "Uncheck" : "Check"} */}
         {todo.done ? (
           <img src="./checked (1) 1.svg" alt="" className="size-[20px]" />
         ) : (
