@@ -21,14 +21,14 @@ export default function App() {
   }, [todos]);
 
   return (
-    <div className="mx-auto w-[550px] space-y-5 overflow-hidden rounded-xl border border-gray-400">
+    <div className="mx-auto w-[550px] space-y-5 overflow-hidden rounded-xl shadow-lg">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
-      <div className="relative m-3 space-y-5 rounded-2xl border-2 border-orange-500 p-3">
+      <div className="relative m-3 space-y-3 rounded-xl border-2 border-orange-500 p-3">
         <h1 className="text-2xl font-semibold">Tasks</h1>
         {todos.map((todo) => (
           <ToDo todo={todo} key={todo.id} dispatch={dispatch} />
         ))}
-        <p className="absolute right-[-10px] top-[-30px] flex size-[35px] items-center justify-center rounded-full bg-orange-500 text-sm text-white">
+        <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-orange-500 text-sm text-white">
           4
         </p>
       </div>
