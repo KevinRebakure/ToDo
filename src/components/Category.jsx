@@ -38,7 +38,7 @@ export default function Category({ dispatch, section, todos, completed }) {
 
   return (
     <div
-      className={`relative w-full space-y-3 rounded-xl border-2 ${completed ? "border-green-500" : "border-orange-500"} p-3`}
+      className={`relative h-max w-full space-y-3 rounded-xl border-2 ${completed ? "border-green-500" : "border-orange-500"} p-3`}
     >
       <h1 className="text-2xl font-semibold">Tasks</h1>
       <button
@@ -47,7 +47,9 @@ export default function Category({ dispatch, section, todos, completed }) {
         Clear
       </button>
       {getTodos}
-      <p className={`${completed ? 'bg-green-500':'bg-orange-500'} absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full text-sm text-white`}>
+      <p
+        className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full text-sm text-white`}
+      >
         4
       </p>
     </div>

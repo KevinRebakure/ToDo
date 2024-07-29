@@ -5,7 +5,7 @@ export default function ToDo({ todo, dispatch, category }) {
     <div
       className={`flex items-center justify-start gap-x-3 border-l-2 ${category ? "border-green-500 bg-green-50" : "border-orange-500 bg-orange-50"} py-1 pl-3 pr-1`}
     >
-      <p className={`${todo.done && "line-through"}`}>{todo.task}</p>
+      <p className={`${todo.done && "line-through text-green-500"}`}>{todo.task}</p>
       <button
         onClick={() =>
           dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: todo.id } })
