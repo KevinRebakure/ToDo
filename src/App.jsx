@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import Form from "./components/Form";
-import ToDo from "./components/ToDo";
 import reducer from "./reducer";
+import Category from "./components/Category";
 
 export const ACTIONS = {
   ADD_TODO: "add-todo",
@@ -25,49 +25,8 @@ export default function App() {
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       <div className="flex gap-x-5 p-5">
-        {/* tasks */}
-        <div className="relative w-full space-y-3 rounded-xl border-2 border-orange-500 p-3">
-          <h1 className="text-2xl font-semibold">Tasks</h1>
-          <button className="gap-x-2 font-semibold text-orange-500">
-            Clear
-          </button>
-          {todos
-            .filter((todo) => !todo.done)
-            .map((todo) => (
-              <ToDo
-                todo={todo}
-                key={todo.id}
-                dispatch={dispatch}
-                category={false}
-              />
-            ))}
-          <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-orange-500 text-sm text-white">
-            4
-          </p>
-        </div>
-
-        {/* completed tasks */}
-        <div className="relative w-full space-y-3 rounded-xl border-2 border-green-500 p-3">
-          <h1 className="text-2xl font-semibold">Completed</h1>
-          <button className="gap-x-2 font-semibold text-green-500">
-            Clear
-          </button>
-          {todos
-            .filter((todo) => todo.done)
-            .map((todo) => {
-              return (
-                <ToDo
-                  todo={todo}
-                  key={todo.id}
-                  dispatch={dispatch}
-                  category={true}
-                />
-              );
-            })}
-          <p className="absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full bg-green-500 text-sm text-white">
-            4
-          </p>
-        </div>
+        <Category completed={false} dispatch={dispatch} todos={todos} section='completed'/>
+        <Category completed={true} dispatch={dispatch} todos={todos} section='todo'/>
       </div>
     </div>
   );
