@@ -56,7 +56,12 @@ export default function App() {
           />
         </div>
       ) : (
-        <p className="p-10 text-center text-2xl">No tasks yet</p>
+        <>
+          <div className="p-10">
+            <p className="text-center">No tasks</p>
+            <p className="text-center">Double click on text to update it</p>
+          </div>
+        </>
       )}
     </div>
   );
