@@ -58,7 +58,7 @@ export default function Category({
       </button>
       {getTodos}
       <p
-        className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center font-semibold justify-center rounded-full text-sm text-white`}
+        className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full text-sm font-semibold text-white`}
       >
         {completed ? count.completed : count.todo}
       </p>
