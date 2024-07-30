@@ -31,7 +31,7 @@ export default function ToDo({ todo, dispatch, category }) {
           type="text"
           name=""
           id=""
-          className="outline-none"
+          className="outline-none pl-3"
         />
       ) : (
         <button
