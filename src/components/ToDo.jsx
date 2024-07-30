@@ -58,9 +58,9 @@ export default function ToDo({ todo, dispatch, category }) {
       )}
       {category == "completed" && (
         <button
-          onClick={() =>
-            dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
-          }
+          // onClick={() =>
+          //   dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
+          // }
           className="ml-auto"
         >
           {todo.done ? (
@@ -71,9 +71,9 @@ export default function ToDo({ todo, dispatch, category }) {
         </button>
       )}
       <button
-        // onClick={() =>
-        //   dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: todo.id } })
-        // }
+        onClick={() =>
+          dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: todo.id } })
+        }
         className={category == "todo" ? "ml-auto" : ""}
       >
         <img src="./delete.png" alt="" className="size-[20px]" />
