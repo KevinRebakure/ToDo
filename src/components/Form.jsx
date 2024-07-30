@@ -7,8 +7,10 @@ export default function Form({ dispatch, input, setInput }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch({ type: ACTIONS.ADD_TODO, payload: { task: input } });
-    setInput("");
+    if (input.trim() !== "") {
+      dispatch({ type: ACTIONS.ADD_TODO, payload: { task: input } });
+      setInput("");
+    }
   }
 
   return (

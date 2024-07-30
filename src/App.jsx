@@ -7,6 +7,8 @@ export const ACTIONS = {
   ADD_TODO: "add-todo",
   DELETE_TODO: "delete-todo",
   COMPLETE_TODO: "complete-todo",
+  EDIT_TODO: "edit-todo",
+  UPDATE_TODO: "update-todo",
 };
 
 export default function App() {
@@ -25,8 +27,18 @@ export default function App() {
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       <div className="flex gap-x-5 p-5">
-        <Category completed={false} dispatch={dispatch} todos={todos} section='completed'/>
-        <Category completed={true} dispatch={dispatch} todos={todos} section='todo'/>
+        <Category
+          completed={false}
+          dispatch={dispatch}
+          todos={todos}
+          section="completed"
+        />
+        <Category
+          completed={true}
+          dispatch={dispatch}
+          todos={todos}
+          section="todo"
+        />
       </div>
     </div>
   );
