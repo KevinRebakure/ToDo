@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function reducer(todos, action) {
   switch (action.type) {
     case ACTIONS.ADD_TODO:
-      return [...todos, newToDo(action.payload.task)];
+      return [newToDo(action.payload.task), ...todos];
     case ACTIONS.DELETE_TODO:
       return todos.filter((todo) => todo.id !== action.payload.id);
     case ACTIONS.COMPLETE_TODO:

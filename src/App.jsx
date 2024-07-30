@@ -24,7 +24,7 @@ export default function App() {
   }, [todos]);
 
   return (
-    <div className="mx-auto w-[650px] space-y-5 overflow-hidden rounded-xl shadow-lg">
+    <div className="mx-auto w-[800px] space-y-5 overflow-hidden rounded-xl shadow-lg">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       <div className="flex gap-x-5 p-5">
