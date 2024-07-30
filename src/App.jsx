@@ -2,11 +2,14 @@ import { useEffect, useReducer, useState } from "react";
 import Form from "./components/Form";
 import reducer from "./reducer";
 import Category from "./components/Category";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 export const ACTIONS = {
   ADD_TODO: "add-todo",
   DELETE_TODO: "delete-todo",
   COMPLETE_TODO: "complete-todo",
+  UNCOMPLETE_TODO: "uncomplete-todo",
   EDIT_TODO: "edit-todo",
   UPDATE_TODO: "update-todo",
   CLEAR: "clear",
@@ -39,22 +42,24 @@ export default function App() {
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       {todos.length > 0 ? (
-        <div className="mt-5 flex gap-x-5 p-5">
-          <Category
-            completed={false}
-            dispatch={dispatch}
-            todos={todos}
-            section="completed"
-            count={count}
-          />
-          <Category
-            completed={true}
-            dispatch={dispatch}
-            todos={todos}
-            section="todo"
-            count={count}
-          />
-        </div>
+        <DndProvider backend={HTML5Backend}>
+          <div className="mt-5 flex gap-x-5 p-5">
+            <Category
+              completed={false}
+              dispatch={dispatch}
+              todos={todos}
+              section="todo"
+              count={count}
+            />
+            <Category
+              completed={true}
+              dispatch={dispatch}
+              todos={todos}
+              section="completed"
+              count={count}
+            />
+          </div>
+        </DndProvider>
       ) : (
         <>
           <div className="p-10">
