@@ -2,7 +2,13 @@ import { ACTIONS } from "../App";
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
 
-export default function Category({ dispatch, section, todos, completed }) {
+export default function Category({
+  count,
+  dispatch,
+  section,
+  todos,
+  completed,
+}) {
   const [getTodos, setGetTodos] = useState([]);
 
   useEffect(() => {
@@ -52,9 +58,9 @@ export default function Category({ dispatch, section, todos, completed }) {
       </button>
       {getTodos}
       <p
-        className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full text-sm text-white`}
+        className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center font-semibold justify-center rounded-full text-sm text-white`}
       >
-        4
+        {completed ? count.completed : count.todo}
       </p>
     </div>
   );
