@@ -10,7 +10,14 @@ export default function reducer(todos, action) {
     case ACTIONS.COMPLETE_TODO:
       return todos.map((todo) => {
         if (todo.id === action.payload.id) {
-          return { ...todo, done: !todo.done };
+          return { ...todo, done: true };
+        }
+        return todo;
+      });
+    case ACTIONS.UNCOMPLETE_TODO:
+      return todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, done: false };
         }
         return todo;
       });
