@@ -35,25 +35,29 @@ export default function App() {
   }, [todos]);
 
   return (
-    <div className="mx-auto w-[800px] space-y-5 overflow-hidden rounded-xl shadow-lg">
+    <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
-      <div className="flex gap-x-5 p-5">
-        <Category
-          completed={false}
-          dispatch={dispatch}
-          todos={todos}
-          section="completed"
-          count={count}
-        />
-        <Category
-          completed={true}
-          dispatch={dispatch}
-          todos={todos}
-          section="todo"
-          count={count}
-        />
-      </div>
+      {todos.length > 0 ? (
+        <div className="mt-5 flex gap-x-5 p-5">
+          <Category
+            completed={false}
+            dispatch={dispatch}
+            todos={todos}
+            section="completed"
+            count={count}
+          />
+          <Category
+            completed={true}
+            dispatch={dispatch}
+            todos={todos}
+            section="todo"
+            count={count}
+          />
+        </div>
+      ) : (
+        <p className="p-10 text-center text-2xl">No tasks yet</p>
+      )}
     </div>
   );
 }
