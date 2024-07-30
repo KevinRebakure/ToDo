@@ -28,6 +28,12 @@ export default function reducer(todos, action) {
         }
         return todo;
       });
+    case ACTIONS.CLEAR:
+      if (action.payload.completed) {
+        return todos.filter((todo) => !todo.done);
+      } else {
+        return todos.filter((todo) => todo.done);
+      }
     default:
       return todos;
   }

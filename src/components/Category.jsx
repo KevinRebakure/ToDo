@@ -1,3 +1,4 @@
+import { ACTIONS } from "../App";
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
 
@@ -42,7 +43,10 @@ export default function Category({ dispatch, section, todos, completed }) {
     >
       <h1 className="text-2xl font-semibold">Tasks</h1>
       <button
-        className={`gap-x-2 font-semibold ${completed ? "text-green-500" : "text-orange-500"}`}
+        onClick={() =>
+          dispatch({ type: ACTIONS.CLEAR, payload: { completed } })
+        }
+        className={`gap-x-2 font-semibold ${completed ? "text-green-500 hover:text-green-600" : "text-orange-500 hover:text-orange-600"}`}
       >
         Clear
       </button>

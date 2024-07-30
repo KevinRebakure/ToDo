@@ -9,6 +9,7 @@ export const ACTIONS = {
   COMPLETE_TODO: "complete-todo",
   EDIT_TODO: "edit-todo",
   UPDATE_TODO: "update-todo",
+  CLEAR: 'clear'
 };
 
 export default function App() {

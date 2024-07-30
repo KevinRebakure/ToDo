@@ -31,13 +31,14 @@ export default function ToDo({ todo, dispatch, category }) {
           type="text"
           name=""
           id=""
+          className="outline-none"
         />
       ) : (
         <button
           onDoubleClick={() => {
             handleDoubleClick();
           }}
-          className={`${todo.done && "text-green-500 line-through"} border text-start`}
+          className={`${todo.done && "text-green-500 line-through"} text-start`}
         >
           {todo.task}
         </button>
