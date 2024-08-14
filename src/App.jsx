@@ -17,7 +17,6 @@ export default function App() {
     reducer,
     JSON.parse(localStorage.getItem("todos")) || [],
   );
-  const [input, setInput] = useState("");
   const [count, setCount] = useState({
     todo: 0,
     completed: 0,
@@ -42,14 +41,12 @@ export default function App() {
         <div className="mt-5 flex gap-x-5 p-5">
           <Category
             completed={false}
-            dispatch={dispatch}
             todos={todos}
             section="completed"
             count={count}
           />
           <Category
             completed={true}
-            dispatch={dispatch}
             todos={todos}
             section="todo"
             count={count}

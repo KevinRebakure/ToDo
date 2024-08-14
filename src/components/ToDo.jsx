@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { ACTIONS } from "../App";
+import { useDispatch } from "react-redux";
+import { remove } from "../features/todoSlice";
 
-export default function ToDo({ todo, dispatch, category }) {
+export default function ToDo({ todo, category }) {
+  const dispatch = useDispatch();
   const [update, setUpdate] = useState(todo.task);
   function handleDoubleClick() {
     dispatch({ type: ACTIONS.EDIT_TODO, payload: { id: todo.id } });
@@ -31,7 +34,7 @@ export default function ToDo({ todo, dispatch, category }) {
           type="text"
           name=""
           id=""
-          className="outline-none pl-3"
+          className="pl-3 outline-none"
         />
       ) : (
         <button
@@ -44,9 +47,9 @@ export default function ToDo({ todo, dispatch, category }) {
         </button>
       )}
       <button
-        onClick={() =>
-          dispatch({ type: ACTIONS.DELETE_TODO, payload: { id: todo.id } })
-        }
+        onClick={() => {
+          dispatch(remove(todo.id));
+        }}
         className="ml-auto"
       >
         <img src="./delete.png" alt="" className="size-[20px]" />
