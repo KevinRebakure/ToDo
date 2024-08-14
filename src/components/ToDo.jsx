@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ACTIONS } from "../App";
 import { useDispatch } from "react-redux";
-import { remove } from "../features/todoSlice";
+import { complete, remove } from "../features/todoSlice";
 
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
@@ -55,9 +55,10 @@ export default function ToDo({ todo, category }) {
         <img src="./delete.png" alt="" className="size-[20px]" />
       </button>
       <button
-        onClick={() =>
-          dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
-        }
+        onClick={() => {
+          // dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
+          dispatch(complete(todo.id));
+        }}
       >
         {todo.done ? (
           <img src="./checked (1) 1.svg" alt="" className="size-[20px]" />

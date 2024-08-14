@@ -12,28 +12,14 @@ export default function Category({ count, dispatch, section, completed }) {
       setGetTodos(
         todos
           .filter((todo) => !todo.done)
-          .map((todo) => (
-            <ToDo
-              todo={todo}
-              key={todo.id}
-              dispatch={dispatch}
-              category={false}
-            />
-          )),
+          .map((todo) => <ToDo todo={todo} key={todo.id} category={false} />),
       );
     } else if (section === "todo") {
       setGetTodos(
         todos
           .filter((todo) => todo.done)
           .map((todo) => {
-            return (
-              <ToDo
-                todo={todo}
-                key={todo.id}
-                dispatch={dispatch}
-                category={true}
-              />
-            );
+            return <ToDo todo={todo} key={todo.id} category={true} />;
           }),
       );
     }
