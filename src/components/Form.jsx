@@ -20,7 +20,6 @@ export default function Form() {
       dispatch(
         count_todo(
           todos.filter((todo) => !todo.done).length,
-          // completed: todos.filter((todo) => todo.done).length,
         ),
       );
     }
