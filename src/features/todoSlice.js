@@ -7,13 +7,13 @@ const todoSlice = createSlice({
   reducers: {
     add: (state, action) => {
       state.value = [
-        ...state.value,
         {
           task: action.payload,
           done: false,
           id: uuidv4(),
           edit: false,
         },
+        ...state.value,
       ];
     },
     remove: (state, action) => {
