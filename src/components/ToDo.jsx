@@ -1,11 +1,18 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { complete, edit, remove, update } from "../features/todoSlice";
+import { count_complete } from "../features/countSlice";
 
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todo.value);
 
   function handleBlur() {
     dispatch(edit(todo.id));
+    dispatch(count_complete(todos.filter((todo) => todo.done).length));
+  }
+
+  function handleChange(e) {
+    dispatch(update({ id: todo.id, task: e.target.value }));
   }
 
   return (
@@ -14,9 +21,7 @@ export default function ToDo({ todo, category }) {
     >
       {todo.edit ? (
         <input
-          onChange={(e) =>
-            dispatch(update({ id: todo.id, task: e.target.value }))
-          }
+          onChange={(e) => handleChange(e)}
           onBlur={handleBlur}
           onKeyDown={(e) => e.key === "Enter" && handleBlur()}
           value={todo.task}

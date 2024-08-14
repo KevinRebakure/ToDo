@@ -2,6 +2,7 @@ import { useEffect, useReducer, useState } from "react";
 import Form from "./components/Form";
 import reducer from "./reducer";
 import Category from "./components/Category";
+import { useDispatch, useSelector } from "react-redux";
 
 export const ACTIONS = {
   ADD_TODO: "add-todo",
@@ -13,25 +14,38 @@ export const ACTIONS = {
 };
 
 export default function App() {
-  const [todos, dispatch] = useReducer(
-    reducer,
-    JSON.parse(localStorage.getItem("todos")) || [],
-  );
-  const [count, setCount] = useState({
-    todo: 0,
-    completed: 0,
-  });
+  // const [todos, dispatch] = useReducer(
+  //   reducer,
+  //   JSON.parse(localStorage.getItem("todos")) || [],
+  // );
+  // const [count, setCount] = useState({
+  //   todo: 0,
+  //   completed: 0,
+  // });
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setCount({
-      todo: todos.filter((todo) => !todo.done).length,
-      completed: todos.filter((todo) => todo.done).length,
-    });
-  }, [todos]);
+  const counters = useSelector((state) => state.count.value);
+  const todos = useSelector((state) => state.todo.value);
 
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
+  console.log(counters);
+
+  // useEffect(() => {
+  //   // setCount({
+  //   //   todo: todos.filter((todo) => !todo.done).length,
+  //   //   completed: todos.filter((todo) => todo.done).length,
+  //   // });
+
+  //   dispatch(
+  //     count({
+  //       todo: todos.filter((todo) => !todo.done).length,
+  //       completed: todos.filter((todo) => todo.done).length,
+  //     }),
+  //   );
+  // }, [todos]);
+
+  // useEffect(() => {
+  //   localStorage.setItem("todos", JSON.stringify(todos));
+  // }, [todos]);
 
   return (
     <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
@@ -43,13 +57,13 @@ export default function App() {
             completed={false}
             todos={todos}
             section="completed"
-            count={count}
+            count={counters.todo}
           />
           <Category
             completed={true}
             todos={todos}
             section="todo"
-            count={count}
+            count={counters.completed}
           />
         </div>
       ) : (
