@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
 import { ACTIONS } from "../App";
 import { input } from "../features/formSlice";
 import { add } from "../features/todoSlice";
