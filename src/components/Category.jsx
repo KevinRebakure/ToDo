@@ -47,7 +47,9 @@ export default function Category({
     <div
       className={`relative h-max w-full space-y-3 rounded-xl border-2 ${completed ? "border-green-500" : "border-orange-500"} p-3`}
     >
-      <h1 className="text-2xl font-semibold">{completed ? 'Completed' : 'Todos'}</h1>
+      <h1 className="text-2xl font-semibold">
+        {completed ? "Completed" : "Todos"}
+      </h1>
       <button
         onClick={() =>
           dispatch({ type: ACTIONS.CLEAR, payload: { completed } })
