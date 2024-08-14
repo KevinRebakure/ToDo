@@ -9,7 +9,6 @@ export default function Form() {
   console.log(todos);
   function handleChange(e) {
     dispatch(input(e.target.value));
-    dispatch(input(e.target.value));
   }
 
   function handleSubmit(e) {
