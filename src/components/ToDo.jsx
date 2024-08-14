@@ -4,10 +4,6 @@ import { complete, edit, remove, update } from "../features/todoSlice";
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
 
-  function handleOnChange(e) {
-    dispatch(update({ id: todo.id, task: e.target.value }));
-  }
-
   function handleBlur() {
     dispatch(edit(todo.id));
   }
@@ -18,7 +14,9 @@ export default function ToDo({ todo, category }) {
     >
       {todo.edit ? (
         <input
-          onChange={(e) => handleOnChange(e)}
+          onChange={(e) =>
+            dispatch(update({ id: todo.id, task: e.target.value }))
+          }
           onBlur={handleBlur}
           onKeyDown={(e) => e.key === "Enter" && handleBlur()}
           value={todo.task}

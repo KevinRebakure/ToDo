@@ -1,11 +1,14 @@
-import { ACTIONS } from "../App";
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clear } from "../features/todoSlice";
 
-export default function Category({ count, dispatch, section, completed }) {
+export default function Category({ count, section, completed }) {
+  const dispatch = useDispatch();
   const [getTodos, setGetTodos] = useState([]);
   const todos = useSelector((state) => state.todo.value);
+
+  console.log(todos);
 
   useEffect(() => {
     if (section === "completed") {
@@ -33,9 +36,7 @@ export default function Category({ count, dispatch, section, completed }) {
         {completed ? "Completed" : "Todos"}
       </h1>
       <button
-        onClick={() =>
-          dispatch({ type: ACTIONS.CLEAR, payload: { completed } })
-        }
+        onClick={() => dispatch(clear(completed))}
         className={`gap-x-2 font-semibold ${completed ? "text-green-500 hover:text-green-600" : "text-orange-500 hover:text-orange-600"}`}
       >
         Clear

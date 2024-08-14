@@ -21,21 +21,21 @@ export default function reducer(todos, action) {
     //     }
     //     return todo;
     //   });
-    case ACTIONS.UPDATE_TODO:
-      return todos.map((todo) => {
-        if (todo.id === action.payload.id) {
-          return { ...todo, task: action.payload.task, edit: false };
-        }
-        return todo;
-      });
-    case ACTIONS.CLEAR:
-      if (action.payload.completed) {
-        return todos.filter((todo) => !todo.done);
-      } else {
-        return todos.filter((todo) => todo.done);
-      }
-    default:
-      return todos;
+    // case ACTIONS.UPDATE_TODO:
+    //   return todos.map((todo) => {
+    //     if (todo.id === action.payload.id) {
+    //       return { ...todo, task: action.payload.task, edit: false };
+    //     }
+    //     return todo;
+    //   });
+    // case ACTIONS.CLEAR:
+    //   if (action.payload.completed) {
+    //     return todos.filter((todo) => !todo.done);
+    //   } else {
+    //     return todos.filter((todo) => todo.done);
+    //   }
+    // default:
+    //   return todos;
   }
 }
 

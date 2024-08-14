@@ -43,7 +43,13 @@ const todoSlice = createSlice({
         return todo;
       });
     },
-    clear: (state, action) => {},
+    clear: (state, action) => {
+      if (action.payload) {
+        state.value = state.value.filter((todo) => !todo.done);
+      } else {
+        state.value = state.value.filter((todo) => todo.done);
+      }
+    },
   },
 });
 
