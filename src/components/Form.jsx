@@ -35,7 +35,6 @@ export default function Form() {
           onChange={handleChange}
           type="text"
           value={data}
-          value={data}
           placeholder="Hit ENTER to add a new task"
           className="w-full outline-none"
         />
