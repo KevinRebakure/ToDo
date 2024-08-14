@@ -1,8 +1,13 @@
+import { useDispatch, useSelector } from "react-redux";
 import { ACTIONS } from "../App";
+import { input } from "../features/formSlice";
 
-export default function Form({ dispatch, input, setInput }) {
+export default function Form() {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.form.value);
+  // console.log(data)
   function handleChange(e) {
-    setInput(e.target.value);
+    dispatch(input(e.target.value));
   }
 
   function handleSubmit(e) {
@@ -12,7 +17,6 @@ export default function Form({ dispatch, input, setInput }) {
       setInput("");
     }
   }
-
   return (
     <form
       action=""
@@ -24,7 +28,7 @@ export default function Form({ dispatch, input, setInput }) {
         <input
           onChange={handleChange}
           type="text"
-          value={input}
+          value={data}
           placeholder="Hit ENTER to add a new task"
           className="w-full outline-none"
         />
