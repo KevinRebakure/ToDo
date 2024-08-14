@@ -5,8 +5,7 @@ import { add } from "../features/todoSlice";
 export default function Form() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.form.value);
-  const todos = useSelector((state) => state.todo.value);
-  console.log(todos);
+  
   function handleChange(e) {
     dispatch(input(e.target.value));
   }

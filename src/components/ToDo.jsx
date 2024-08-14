@@ -29,7 +29,6 @@ export default function ToDo({ todo, category }) {
         <button
           onDoubleClick={() => {
             dispatch(edit(todo.id));
-            console.log("editing");
           }}
           className={`${todo.done && "text-green-500 line-through"} text-start`}
         >

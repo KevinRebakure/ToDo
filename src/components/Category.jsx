@@ -8,7 +8,9 @@ export default function Category({ count, section, completed }) {
   const [getTodos, setGetTodos] = useState([]);
   const todos = useSelector((state) => state.todo.value);
 
-  console.log(todos);
+  function handleClear() {
+    dispatch(clear(completed));
+  }
 
   useEffect(() => {
     if (section === "completed") {
@@ -36,7 +38,7 @@ export default function Category({ count, section, completed }) {
         {completed ? "Completed" : "Todos"}
       </h1>
       <button
-        onClick={() => dispatch(clear(completed))}
+        onClick={handleClear}
         className={`gap-x-2 font-semibold ${completed ? "text-green-500 hover:text-green-600" : "text-orange-500 hover:text-orange-600"}`}
       >
         Clear

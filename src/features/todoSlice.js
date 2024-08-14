@@ -53,7 +53,5 @@ const todoSlice = createSlice({
   },
 });
 
-// console.log(todoSlice)
-
 export const { add, remove, complete, edit, update, clear } = todoSlice.actions;
 export default todoSlice.reducer;
