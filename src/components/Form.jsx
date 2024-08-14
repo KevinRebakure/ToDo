@@ -1,22 +1,27 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIONS } from "../App";
 import { input } from "../features/formSlice";
+import { add } from "../features/todoSlice";
 
 export default function Form() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.form.value);
-  // console.log(data)
+  const todos = useSelector((state) => state.todo.value);
+  console.log(todos);
   function handleChange(e) {
     dispatch(input(e.target.value));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (input.trim() !== "") {
-      dispatch({ type: ACTIONS.ADD_TODO, payload: { task: input } });
-      setInput("");
+    if (data.trim() !== "") {
+      // dispatch({ type: ACTIONS.ADD_TODO, payload: { task: input } });
+      dispatch(add(data));
+      dispatch(input(""));
+      // setInput("");
     }
   }
+
   return (
     <form
       action=""

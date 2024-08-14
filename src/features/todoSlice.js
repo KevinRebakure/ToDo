@@ -1,11 +1,21 @@
+import { v4 as uuidv4 } from "uuid";
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
 const todoSlice = createSlice({
   name: "todo",
-  initialState,
+  initialState: { value: [] },
   reducers: {
-    add: (state, action) => {},
+    add: (state, action) => {
+      state.value = [
+        ...state.value,
+        {
+          task: action.payload,
+          done: false,
+          id: uuidv4(),
+          edit: false,
+        },
+      ];
+    },
     remove: (state, action) => {},
     complete: (state, action) => {},
     edit: (state, action) => {},

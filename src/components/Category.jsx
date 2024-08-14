@@ -1,15 +1,11 @@
 import { ACTIONS } from "../App";
 import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
+import { useSelector } from "react-redux";
 
-export default function Category({
-  count,
-  dispatch,
-  section,
-  todos,
-  completed,
-}) {
+export default function Category({ count, dispatch, section, completed }) {
   const [getTodos, setGetTodos] = useState([]);
+  const todos = useSelector((state) => state.todo.value);
 
   useEffect(() => {
     if (section === "completed") {
