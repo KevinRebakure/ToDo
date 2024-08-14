@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ACTIONS } from "../App";
 import { input } from "../features/formSlice";
 import { add } from "../features/todoSlice";
 
@@ -16,10 +15,8 @@ export default function Form() {
   function handleSubmit(e) {
     e.preventDefault();
     if (data.trim() !== "") {
-      // dispatch({ type: ACTIONS.ADD_TODO, payload: { task: input } });
       dispatch(add(data));
       dispatch(input(""));
-      // setInput("");
     }
   }
   return (
