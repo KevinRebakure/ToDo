@@ -1,24 +1,15 @@
-import { useState } from "react";
-import { ACTIONS } from "../App";
 import { useDispatch } from "react-redux";
-import { complete, remove } from "../features/todoSlice";
+import { complete, edit, remove, update } from "../features/todoSlice";
 
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
-  const [update, setUpdate] = useState(todo.task);
-  function handleDoubleClick() {
-    dispatch({ type: ACTIONS.EDIT_TODO, payload: { id: todo.id } });
-  }
 
   function handleOnChange(e) {
-    setUpdate(e.target.value);
+    dispatch(update({ id: todo.id, task: e.target.value }));
   }
 
   function handleBlur() {
-    dispatch({
-      type: ACTIONS.UPDATE_TODO,
-      payload: { id: todo.id, task: update },
-    });
+    dispatch(edit(todo.id));
   }
 
   return (
@@ -30,7 +21,7 @@ export default function ToDo({ todo, category }) {
           onChange={(e) => handleOnChange(e)}
           onBlur={handleBlur}
           onKeyDown={(e) => e.key === "Enter" && handleBlur()}
-          value={update}
+          value={todo.task}
           type="text"
           name=""
           id=""
@@ -39,7 +30,8 @@ export default function ToDo({ todo, category }) {
       ) : (
         <button
           onDoubleClick={() => {
-            handleDoubleClick();
+            dispatch(edit(todo.id));
+            console.log("editing");
           }}
           className={`${todo.done && "text-green-500 line-through"} text-start`}
         >
@@ -54,12 +46,7 @@ export default function ToDo({ todo, category }) {
       >
         <img src="./delete.png" alt="" className="size-[20px]" />
       </button>
-      <button
-        onClick={() => {
-          // dispatch({ type: ACTIONS.COMPLETE_TODO, payload: { id: todo.id } })
-          dispatch(complete(todo.id));
-        }}
-      >
+      <button onClick={() => dispatch(complete(todo.id))}>
         {todo.done ? (
           <img src="./checked (1) 1.svg" alt="" className="size-[20px]" />
         ) : (

@@ -33,6 +33,8 @@ export default function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
+  console.log(todos);
+
   return (
     <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
       <Form />

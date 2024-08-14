@@ -27,8 +27,22 @@ const todoSlice = createSlice({
         return todo;
       });
     },
-    edit: (state, action) => {},
-    update: (state, action) => {},
+    edit: (state, action) => {
+      state.value = state.value.map((todo) => {
+        if (todo.id === action.payload) {
+          return { ...todo, edit: !todo.edit };
+        }
+        return todo;
+      });
+    },
+    update: (state, action) => {
+      state.value = state.value.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return { ...todo, task: action.payload.task };
+        }
+        return todo;
+      });
+    },
     clear: (state, action) => {},
   },
 });
