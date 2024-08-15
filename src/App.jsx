@@ -1,8 +1,12 @@
 import Form from "./components/Form";
 import Category from "./components/Category";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 export default function App() {
   const todos = useSelector((state) => state.todo.value);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, todos);
 
   return (
     <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
