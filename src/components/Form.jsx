@@ -5,18 +5,15 @@ import { add } from "../features/todoSlice";
 export default function Form() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.form.value);
-
-  function handleChange(e) {
-    dispatch(input(e.target.value));
-  }
-
-  function handleSubmit(e) {
+  const handleChange = (e) => dispatch(input(e.target.value));
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (data.trim() !== "") {
       dispatch(add(data));
       dispatch(input(""));
     }
-  }
+  };
+
   return (
     <form
       action=""

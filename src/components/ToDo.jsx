@@ -3,14 +3,12 @@ import { complete, edit, remove, update } from "../features/todoSlice";
 
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
-
-  function handleBlur() {
-    dispatch(edit(todo.id));
-  }
-
-  function handleChange(e) {
+  const handleBlur = () => dispatch(edit(todo.id));
+  const handleChange = (e) =>
     dispatch(update({ id: todo.id, task: e.target.value }));
-  }
+  const handleEdit = () => dispatch(edit(todo.id));
+  const handleDelete = () => dispatch(remove(todo.id));
+  const handleComplete = () => dispatch(complete(todo.id));
 
   return (
     <div
@@ -29,27 +27,16 @@ export default function ToDo({ todo, category }) {
         />
       ) : (
         <button
-          onDoubleClick={() => {
-            dispatch(edit(todo.id));
-          }}
+          onDoubleClick={handleEdit}
           className={`${todo.done && "text-green-500 line-through"} text-start`}
         >
           {todo.task}
         </button>
       )}
-      <button
-        onClick={() => {
-          dispatch(remove(todo.id));
-        }}
-        className="ml-auto"
-      >
+      <button onClick={handleDelete} className="ml-auto">
         <img src="./delete.png" alt="" className="size-[20px]" />
       </button>
-      <button
-        onClick={() => {
-          dispatch(complete(todo.id));
-        }}
-      >
+      <button onClick={handleComplete}>
         {todo.done ? (
           <img src="./checked (1) 1.svg" alt="" className="size-[20px]" />
         ) : (

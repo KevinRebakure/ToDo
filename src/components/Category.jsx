@@ -5,18 +5,10 @@ import { clear } from "../features/todoSlice";
 export default function Category({ completed }) {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todo.value);
-
-  function handleClear() {
-    dispatch(clear(completed));
-  }
-
   const counts = {
     todo: todos.filter((todo) => !todo.done).length,
     completed: todos.filter((todo) => todo.done).length,
   };
-
-  console.log(counts);
-
   const displayTodos = completed
     ? todos
         .filter((todo) => todo.done)
@@ -26,6 +18,10 @@ export default function Category({ completed }) {
         .map((todo) => {
           return <ToDo todo={todo} key={todo.id} category={false} />;
         });
+  function handleClear() {
+    dispatch(clear(completed));
+  }
+
   return (
     <div
       className={`relative h-max w-full space-y-3 rounded-xl border-2 ${completed ? "border-green-500" : "border-orange-500"} p-3`}
