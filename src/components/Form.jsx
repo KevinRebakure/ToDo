@@ -17,11 +17,7 @@ export default function Form() {
     if (data.trim() !== "") {
       dispatch(add(data));
       dispatch(input(""));
-      dispatch(
-        count_todo(
-          todos.filter((todo) => !todo.done).length,
-        ),
-      );
+      dispatch(count_todo(todos.filter((todo) => !todo.done).length));
     }
   }
   return (
