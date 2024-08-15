@@ -6,7 +6,7 @@ export default function App() {
   const todos = useSelector((state) => state.todo.value);
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, todos);
+  }, [todos]);
 
   return (
     <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
