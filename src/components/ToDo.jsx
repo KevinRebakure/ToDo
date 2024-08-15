@@ -1,14 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { complete, edit, remove, update } from "../features/todoSlice";
-import { count_complete } from "../features/countSlice";
 
 export default function ToDo({ todo, category }) {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todo.value);
 
   function handleBlur() {
     dispatch(edit(todo.id));
-    dispatch(count_complete(todos.filter((todo) => todo.done).length));
   }
 
   function handleChange(e) {
@@ -48,7 +45,11 @@ export default function ToDo({ todo, category }) {
       >
         <img src="./delete.png" alt="" className="size-[20px]" />
       </button>
-      <button onClick={() => dispatch(complete(todo.id))}>
+      <button
+        onClick={() => {
+          dispatch(complete(todo.id));
+        }}
+      >
         {todo.done ? (
           <img src="./checked (1) 1.svg" alt="" className="size-[20px]" />
         ) : (

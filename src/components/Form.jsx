@@ -1,12 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { input } from "../features/formSlice";
 import { add } from "../features/todoSlice";
-import { count_todo } from "../features/countSlice";
 
 export default function Form() {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.form.value);
-  const todos = useSelector((state) => state.todo.value);
 
   function handleChange(e) {
     dispatch(input(e.target.value));
@@ -17,7 +15,6 @@ export default function Form() {
     if (data.trim() !== "") {
       dispatch(add(data));
       dispatch(input(""));
-      dispatch(count_todo(todos.filter((todo) => !todo.done).length));
     }
   }
   return (

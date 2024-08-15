@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
 import ToDo from "./ToDo";
 import { useDispatch, useSelector } from "react-redux";
 import { clear } from "../features/todoSlice";
 
-export default function Category({ count, section, completed }) {
+export default function Category({ completed }) {
   const dispatch = useDispatch();
-  const [getTodos, setGetTodos] = useState([]);
   const todos = useSelector((state) => state.todo.value);
 
   function handleClear() {
     dispatch(clear(completed));
   }
 
-  useEffect(() => {
-    if (section === "completed") {
-      setGetTodos(
-        todos
-          .filter((todo) => !todo.done)
-          .map((todo) => <ToDo todo={todo} key={todo.id} category={false} />),
-      );
-    } else if (section === "todo") {
-      setGetTodos(
-        todos
-          .filter((todo) => todo.done)
-          .map((todo) => {
-            return <ToDo todo={todo} key={todo.id} category={true} />;
-          }),
-      );
-    }
-  }, [section, todos]);
+  const counts = {
+    todo: todos.filter((todo) => !todo.done).length,
+    completed: todos.filter((todo) => todo.done).length,
+  };
 
+  console.log(counts);
+
+  const displayTodos = completed
+    ? todos
+        .filter((todo) => todo.done)
+        .map((todo) => <ToDo todo={todo} key={todo.id} category={true} />)
+    : todos
+        .filter((todo) => !todo.done)
+        .map((todo) => {
+          return <ToDo todo={todo} key={todo.id} category={false} />;
+        });
   return (
     <div
       className={`relative h-max w-full space-y-3 rounded-xl border-2 ${completed ? "border-green-500" : "border-orange-500"} p-3`}
@@ -43,11 +39,11 @@ export default function Category({ count, section, completed }) {
       >
         Clear
       </button>
-      {getTodos}
+      {displayTodos}
       <p
         className={`${completed ? "bg-green-500" : "bg-orange-500"} absolute right-[-10px] top-[-20px] flex size-[35px] items-center justify-center rounded-full text-sm font-semibold text-white`}
       >
-        {completed ? count.completed : count.todo}
+        {completed ? counts.completed : counts.todo}
       </p>
     </div>
   );

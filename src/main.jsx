@@ -6,13 +6,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import formSlice from "./features/formSlice.js";
 import todoSlice from "./features/todoSlice.js";
-import countSlice from "./features/countSlice.js";
 
 const store = configureStore({
   reducer: {
     todo: todoSlice,
     form: formSlice,
-    count: countSlice,
   },
 });
 
