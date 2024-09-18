@@ -4,6 +4,8 @@ import reducer from "./reducer";
 import Category from "./components/Category";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+import { TouchBackend } from "react-dnd-touch-backend";
+import { MultiBackend, TouchTransition } from "react-dnd-multi-backend";
 
 export const ACTIONS = {
   ADD_TODO: "add-todo",
@@ -13,6 +15,22 @@ export const ACTIONS = {
   EDIT_TODO: "edit-todo",
   UPDATE_TODO: "update-todo",
   CLEAR: "clear",
+};
+
+const HTML5toTouch = {
+  backends: [
+    {
+      id: "html5",
+      backend: HTML5Backend,
+      transition: TouchTransition,
+    },
+    {
+      id: "touch",
+      backend: TouchBackend,
+      options: { enableMouseEvents: true },
+      preview: true,
+    },
+  ],
 };
 
 export default function App() {
@@ -42,7 +60,7 @@ export default function App() {
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       {todos.length > 0 ? (
-        <DndProvider backend={HTML5Backend}>
+        <DndProvider backend={MultiBackend} options={HTML5toTouch}>
           <div className="mt-5 flex gap-x-5 p-5">
             <Category
               completed={false}
