@@ -33,7 +33,6 @@ const HTML5toTouch = {
   ],
 };
 
-
 export default function App() {
   const [todos, dispatch] = useReducer(
     reducer,
@@ -57,12 +56,12 @@ export default function App() {
   }, [todos]);
 
   return (
-    <div className="mx-auto w-[640px] overflow-hidden rounded-xl shadow-lg">
+    <div className="mx-auto w-full overflow-hidden rounded-xl shadow-lg sm:w-[640px]">
       <Form dispatch={dispatch} setInput={setInput} input={input} />
 
       {todos.length > 0 ? (
         <DndProvider backend={MultiBackend} options={HTML5toTouch}>
-          <div className="mt-5 flex gap-x-5 p-5">
+          <div className="mt-5 flex flex-col gap-5 gap-x-5 p-5 sm:flex-row">
             <Category
               completed={false}
               dispatch={dispatch}
