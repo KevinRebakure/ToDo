@@ -22,16 +22,17 @@ const HTML5toTouch = {
     {
       id: "html5",
       backend: HTML5Backend,
-      transition: TouchTransition,
     },
     {
       id: "touch",
       backend: TouchBackend,
       options: { enableMouseEvents: true },
       preview: true,
+      transition: TouchTransition,
     },
   ],
 };
+
 
 export default function App() {
   const [todos, dispatch] = useReducer(
